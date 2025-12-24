@@ -268,3 +268,83 @@ double* arrays_D_without_min(const double* a, int size_a, const double* b, int s
 
     return array_d;
 }
+
+//пузырьковой сортировки
+void sort_bubble(double* ptrarr, int n)
+{
+    for (int i = 0; i < n - 1; i++) {
+        int swapped = 0;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (ptrarr[j] > ptrarr[j + 1]) {
+                double temp = ptrarr[j];
+                ptrarr[j] = ptrarr[j + 1];
+                ptrarr[j + 1] = temp;
+                swapped = 1;
+            }
+        }
+        if (!swapped) break;
+    }
+}
+
+//шейкерной(перемешиванием) сортировки
+void sort_kokteil(double* ptrarr, int n)
+{
+    int iLeft = 1;
+    int iRight = n - 1;
+
+    while (iLeft <= iRight) {
+        for (int j = iLeft; j <= iRight; j++) {
+            if (ptrarr[j] < ptrarr[j - 1]) {
+                double x = ptrarr[j];
+                ptrarr[j] = ptrarr[j - 1];
+                ptrarr[j - 1] = x;
+            }
+        }
+        iRight--;
+
+        for (int j = iRight; j >= iLeft; j--) {
+            if (ptrarr[j] < ptrarr[j - 1]) {
+                double x = ptrarr[j];
+                ptrarr[j] = ptrarr[j - 1];
+                ptrarr[j - 1] = x;
+            }
+        }
+        iLeft++;
+    }
+}
+
+//сортировки простым выбором
+void sort_select(double* ptrarr, int n)
+{
+    for (int i = 0; i < n - 1; i++) {
+        int imax = i;
+
+        for (int j = i + 1; j < n; j++) {
+            if (ptrarr[j] > ptrarr[imax]) {
+                imax = j;
+            }
+        }
+
+        if (imax != i) {
+            double temp = ptrarr[i];
+            ptrarr[i] = ptrarr[imax];
+            ptrarr[imax] = temp;
+        }
+    }
+}
+
+//сортировки вставками
+void sort_insert(double* ptrarr, int n)
+{
+    for (int i = 1; i < n; i++) {
+        double temp = ptrarr[i];
+        int j = i;
+
+        while (j > 0 && ptrarr[j - 1] > temp) {
+            ptrarr[j] = ptrarr[j - 1];
+            j = j - 1;
+        }
+
+        ptrarr[j] = temp;
+    }
+}

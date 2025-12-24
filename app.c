@@ -6,30 +6,40 @@
 
 #define SIZE 100
 
-int task14(int size);
+int task14(double* array, int size);
 int task16(int size);
 int task16DZ();
+int task17(double* array, int size);
 
 int main() {
-    puts("Лабораторные работы 11, 14, 16, 19, 25: Работа с массивами ===\n");
+    puts("Лабораторные работы 11, 14, 16, 17: Работа с массивами ===\n");
 
     int size;
     puts("Укажите размер массива");
     scanf("%d", &size);
 
-    task14(size); // для всех заданий лаб. 14
+    int orig_size = size;
 
-    task16(size);// для всех заданий лаб. 16
+    double* array = (double*)malloc(orig_size * sizeof(double));
+    if (array == NULL) {
+        puts("Ошибка выделения памяти!");
+        return -1;
+    }
 
-    task16DZ();// для ДЗ лаб. 16
+    task14(array, orig_size); 
 
+    task16(size);
+
+    task16DZ();
+
+    task17(array, orig_size);
+
+    free(array);
     return 0;
 }
 
 
-int task14(int size) {
-
-    double array[SIZE];
+int task14(double* array, int size) {
 
     printf("\n---- Лаба 14 ----\n");
 
@@ -224,6 +234,53 @@ int task16DZ() {
     free(ptr_a);
     free(ptr_b);
     free(ptr_c);
+
+    return 0;
+}
+
+int task17(double* array, int size) {
+    printf("\n--- Сортировка массива ---\n\n");
+
+    int menu;
+    do {
+        printf("\n1-Пузырьковая\n2-Шейкерная\n3-Выбором\n4-Вставками\n0-Выход\nВыбор: ");
+        scanf("%d", &menu);
+
+        switch (menu) {
+        case 1:
+            sort_bubble(array, size);
+            printf("После пузырьковой сортировки:\n");
+            put_elements(array, size);
+            break;
+
+        case 2:
+            sort_kokteil(array, size);
+            printf("После шейкерной сортировки:\n");
+            put_elements(array, size);
+            break;
+
+        case 3:
+            sort_select(array, size);
+            printf("После сортировки выбором:\n");
+            put_elements(array, size);
+            break;
+
+        case 4:
+            sort_insert(array, size);
+            printf("После сортировки вставками:\n");
+            put_elements(array, size);
+            break;
+
+        case 0:
+            printf("Выход\n");
+            break;
+
+        default:
+            printf("Неверный выбор!\n");
+            break;
+        }
+
+    } while (menu != 0);
 
     return 0;
 }

@@ -54,7 +54,7 @@ double sum_elements(double* ptr_array, int begin, int end);
 int find_element(double* ptr_array, int n, double value);
 
 /**
- * Поиск индекса максимального элемента, который меньше заданного значения A
+ * Поиск порядкового номера максимального элемента, который меньше заданного значения A
  * @param ptr_array указатель на массив
  * @param n размер массива
  * @param A заданное значение
@@ -128,5 +128,33 @@ int copy_excluding_value(const double* src, int src_size, double* dest, int dest
  * @return указатель на полученный массив
  */
 double* arrays_D_without_min(const double* a, int size_a, const double* b, int size_b, const double* c, int size_c, int* result_size);
+
+/**
+ * Сортировка методом пузырька
+ * @param ptarr указатель на массив
+ * @param n размер массива
+ */
+void sort_bubble(double* ptrarr, int n);
+
+/**
+ * Сортировка методом шейкера
+ * @param ptr_array указатель на массив
+ * @param n размер массива
+ */
+void sort_kokteil(double* ptrarr, int n);
+
+/**
+ * Сортировка массива методом выбора
+ * @param ptarr указатель на массив
+ * @param n размер массива
+ */
+void sort_select(double* ptrarr, int n);
+
+/**
+ * Сортировка методом вставок
+ * @param ptr_array указатель на массив
+ * @param n размер массива
+ */
+void sort_insert(double* ptrarr, int n);
 
 #endif
